@@ -97,7 +97,7 @@ const NextButton = styled.button`
 `;
 
 const GameBoard = () => {
-  const script = chapter1;
+  const script = chapter1.texts;
 
   const [currentLine, setCurrentLine] = useState<number>(0);
 
@@ -110,7 +110,7 @@ const GameBoard = () => {
     <GameboardContainer>
       <Titlebar />
       <ECGContainer src="/bom_default.jpg" />
-      <ChapterContainer>시작하는 장</ChapterContainer>
+      <ChapterContainer>{chapter1.title}</ChapterContainer>
       <Scriptontainer>{script[currentLine].text}</Scriptontainer>
       <NameContainer>2월 15일</NameContainer>
       <NextButton onClick={handleClickNext}>다음으로 &gt;</NextButton>

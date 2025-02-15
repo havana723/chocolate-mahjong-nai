@@ -1,4 +1,6 @@
-export const chapter1 = [
+const title = "시작하는 장";
+
+const texts = [
   { text: "“…있잖아, 왜 발렌타인 데이 선물은 펭귄이 될 수 없을까?”" },
   { text: "나와 눈을 맞추며 조금은 뜬금없는 질문을 하는 봄이." },
   {
@@ -54,3 +56,5 @@ export const chapter1 = [
     text: "“…그냥. …이번에 준 초콜릿, 고마워서….”",
   },
 ];
+
+export const chapter1 = { title, texts };
