@@ -172,7 +172,7 @@ Error generating stack: `+e.message+`
   &:hover {
     font-weight: 700;
   }
-`,Vv=()=>{const c=Yd.texts,[o,m]=Xt.useState(0),r=Xt.useCallback(()=>m(S=>(S+1)%c.length),[c.length]);return Kt.jsxs(Yv,{children:[Kt.jsx(Bv,{}),Kt.jsx(jv,{src:"/bom_default.jpg"}),Kt.jsx(Gv,{children:Yd.title}),Kt.jsx(Xv,{children:c[o].text}),Kt.jsx(Qv,{children:"2월 15일"}),Kt.jsx(Zv,{onClick:r,children:"다음으로 >"})]})},Lv=hl.div`
+`,Vv=()=>{const c=Yd.texts,[o,m]=Xt.useState(0),r=Xt.useCallback(()=>m(S=>(S+1)%c.length),[c.length]);return Kt.jsxs(Yv,{children:[Kt.jsx(Bv,{}),Kt.jsx(jv,{src:"bom_default.jpg"}),Kt.jsx(Gv,{children:Yd.title}),Kt.jsx(Xv,{children:c[o].text}),Kt.jsx(Qv,{children:"2월 15일"}),Kt.jsx(Zv,{onClick:r,children:"다음으로 >"})]})},Lv=hl.div`
   position: relative;
   height: 100%;
   width: 100%;
