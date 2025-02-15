@@ -109,7 +109,7 @@ const GameBoard = () => {
   return (
     <GameboardContainer>
       <Titlebar />
-      <ECGContainer src="/bom_default.jpg" />
+      <ECGContainer src="bom_default.jpg" />
       <ChapterContainer>{chapter1.title}</ChapterContainer>
       <Scriptontainer>{script[currentLine].text}</Scriptontainer>
       <NameContainer>2월 15일</NameContainer>
