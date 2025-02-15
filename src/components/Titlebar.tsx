@@ -6,9 +6,7 @@ const TitlebarContainer = styled.div`
   background-color: #eeeeee;
   width: 100%;
   height: 4%;
-  border-bottom: 1px solid #424242;
-  border-image: url(https://res.cloudinary.com/dangvxnul/image/upload/v1716309479/paper-border1_rvbod3.png)
-    20 fill round;
+  border-bottom: 1px solid #9a9a9a;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,6 +14,8 @@ const TitlebarContainer = styled.div`
   font-size: 2vmin;
   padding: 0 2vmin;
   font-weight: 600;
+  border-top-right-radius: 0.6vmin;
+  border-top-left-radius: 0.6vmin;
 `;
 
 const Title = styled.div``;
@@ -25,13 +25,13 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 2vmin;
 `;
 
 const MinimizeButton = styled.div`
-  width: 12px;
-  height: 4px;
-  border-bottom: 2px solid #424242;
+  width: 1.4vmin;
+  height: 0.4vmin;
+  border-bottom: 0.3vmin solid #424242;
 `;
 
 const Titlebar = () => {
@@ -40,8 +40,8 @@ const Titlebar = () => {
       <Title>초콜릿으로는 마작을 칠 수 없어</Title>
       <ButtonContainer>
         <MinimizeButton />
-        <IconSquare size={14} />
-        <IconX size={16} />
+        <IconSquare size={"1.6vmin"} />
+        <IconX size={"2vmin"} />
       </ButtonContainer>
     </TitlebarContainer>
   );
