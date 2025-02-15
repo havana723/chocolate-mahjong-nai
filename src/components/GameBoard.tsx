@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useCallback, useState } from "react";
+import { chapter1 } from "../scripts/chapter01";
 import Titlebar from "./Titlebar";
 
 const GameboardContainer = styled.div`
@@ -8,6 +10,7 @@ const GameboardContainer = styled.div`
   user-select: none;
   word-break: keep-all;
   border-radius: 0.6vmin;
+  border: 1px solid #9a9a9a;
 
   @media (min-aspect-ratio: 4/3) {
     height: 100%;
@@ -15,6 +18,20 @@ const GameboardContainer = styled.div`
   @media (max-aspect-ratio: 4/3) {
     width: 100%;
   }
+`;
+
+const ChapterContainer = styled.div`
+  position: absolute;
+  top: 6%;
+  left: 1%;
+  width: 24%;
+  height: 4%;
+  border: 1px solid #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  font-size: 2vmin;
 `;
 
 const ECGContainer = styled.img`
@@ -80,15 +97,23 @@ const NextButton = styled.button`
 `;
 
 const GameBoard = () => {
+  const script = chapter1;
+
+  const [currentLine, setCurrentLine] = useState<number>(0);
+
+  const handleClickNext = useCallback(
+    () => setCurrentLine((prev) => (prev + 1) % script.length),
+    [script.length]
+  );
+
   return (
     <GameboardContainer>
       <Titlebar />
       <ECGContainer src="/bom_default.jpg" />
-      <Scriptontainer>
-        “…있잖아, 왜 발렌타인 데이 선물은 펭귄이 될 수 없을까?”
-      </Scriptontainer>
+      <ChapterContainer>시작하는 장</ChapterContainer>
+      <Scriptontainer>{script[currentLine].text}</Scriptontainer>
       <NameContainer>2월 15일</NameContainer>
-      <NextButton>다음으로 &gt;</NextButton>
+      <NextButton onClick={handleClickNext}>다음으로 &gt;</NextButton>
     </GameboardContainer>
   );
 };
