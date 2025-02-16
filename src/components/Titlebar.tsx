@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { IconSquare, IconX } from "@tabler/icons-react";
 
 const TitlebarContainer = styled.div`
-  position: relative;
+  position: absolute;
+  top: 0;
   background-color: #eeeeee;
   width: 100%;
   height: 4%;

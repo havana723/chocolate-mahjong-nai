@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useCallback, useState } from "react";
 import { chapter1 } from "../scripts/chapter01";
+import ChapterTitle from "./ChapterTitle";
+import LoadingBar from "./LoadingBar";
 import Titlebar from "./Titlebar";
 
 const GameboardContainer = styled.div`
@@ -11,6 +13,9 @@ const GameboardContainer = styled.div`
   word-break: keep-all;
   border-radius: 0.6vmin;
   border: 1px solid #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (min-aspect-ratio: 4/3) {
     height: 100%;
@@ -96,26 +101,47 @@ const NextButton = styled.button`
   }
 `;
 
+const states = ["LOADING", "TITLE", "SCRIPT"];
+
 const GameBoard = () => {
   const script = chapter1.texts;
 
+  const [currentState, setCurrentState] = useState<number>(0);
   const [currentLine, setCurrentLine] = useState<number>(0);
 
-  const handleClickNext = useCallback(
-    () => setCurrentLine((prev) => (prev + 1) % script.length),
-    [script.length]
+  const getNextState = useCallback(
+    () => setCurrentState((prev) => (prev + 1) % states.length),
+    []
   );
+
+  const handleClickNextButton = useCallback(() => {
+    if (currentLine === script.length - 1) {
+      getNextState();
+    } else {
+      setCurrentLine((prev) => (prev + 1) % script.length);
+    }
+  }, [currentLine, getNextState, script.length]);
 
   return (
     <GameboardContainer>
       <Titlebar />
-      <DefaultECGContainer playsInline autoPlay muted loop>
-        <source src="bom_default.mp4" type="video/mp4" />
-      </DefaultECGContainer>
-      <ChapterContainer>{chapter1.title}</ChapterContainer>
-      <Scriptontainer>{script[currentLine].text}</Scriptontainer>
-      <NameContainer>2월 15일</NameContainer>
-      <NextButton onClick={handleClickNext}>다음으로 &gt;</NextButton>
+      {states[currentState] === "LOADING" && (
+        <LoadingBar onFinish={getNextState} />
+      )}
+      {states[currentState] === "TITLE" && (
+        <ChapterTitle title={chapter1.title} onClickNext={getNextState} />
+      )}
+      {states[currentState] === "SCRIPT" && (
+        <>
+          <DefaultECGContainer playsInline autoPlay muted loop>
+            <source src="bom_default.mp4" type="video/mp4" />
+          </DefaultECGContainer>
+          <ChapterContainer>{chapter1.title}</ChapterContainer>
+          <Scriptontainer>{script[currentLine].text}</Scriptontainer>
+          <NameContainer>2월 15일</NameContainer>
+          <NextButton onClick={handleClickNextButton}>다음으로 &gt;</NextButton>
+        </>
+      )}
     </GameboardContainer>
   );
 };
