@@ -254,7 +254,7 @@ Error generating stack: `+e.message+`
   &:hover {
     font-weight: 700;
   }
-`,ni=["LOADING","TITLE","SCRIPT"],ly=()=>{const c=xf.texts,[o,m]=Dt.useState(0),[r,b]=Dt.useState(0),A=Dt.useCallback(()=>m(N=>(N+1)%ni.length),[]),D=Dt.useCallback(()=>{r===c.length-1?A():b(N=>(N+1)%c.length)},[r,A,c.length]);return dt.jsxs($v,{children:[dt.jsx(kv,{}),ni[o]==="LOADING"&&dt.jsx(Lv,{onFinish:A}),ni[o]==="TITLE"&&dt.jsx(Gv,{title:xf.title,onClickNext:A}),ni[o]==="SCRIPT"&&dt.jsxs(dt.Fragment,{children:[dt.jsx(Fv,{playsInline:!0,autoPlay:!0,muted:!0,loop:!0,children:dt.jsx("source",{src:"bom_default.mp4",type:"video/mp4"})}),dt.jsx(Wv,{children:xf.title}),dt.jsx(Pv,{children:c[r].text}),dt.jsx(Iv,{children:"2월 15일"}),dt.jsx(ty,{onClick:D,children:"다음으로 >"})]})]})},ey=xt.div`
+`,ni=["LOADING","TITLE","SCRIPT"],ly=()=>{const c=xf.texts,[o,m]=Dt.useState(0),[r,b]=Dt.useState(0),A=Dt.useCallback(()=>m(N=>(N+1)%ni.length),[]),D=Dt.useCallback(()=>{r===c.length-1?(A(),b(0)):b(N=>(N+1)%c.length)},[r,A,c.length]);return dt.jsxs($v,{children:[dt.jsx(kv,{}),ni[o]==="LOADING"&&dt.jsx(Lv,{onFinish:A}),ni[o]==="TITLE"&&dt.jsx(Gv,{title:xf.title,onClickNext:A}),ni[o]==="SCRIPT"&&dt.jsxs(dt.Fragment,{children:[dt.jsx(Fv,{playsInline:!0,autoPlay:!0,muted:!0,loop:!0,children:dt.jsx("source",{src:"bom_default.mp4",type:"video/mp4"})}),dt.jsx(Wv,{children:xf.title}),dt.jsx(Pv,{children:c[r].text}),dt.jsx(Iv,{children:"2월 15일"}),dt.jsx(ty,{onClick:D,children:"다음으로 >"})]})]})},ey=xt.div`
   position: relative;
   height: 100%;
   width: 100%;
