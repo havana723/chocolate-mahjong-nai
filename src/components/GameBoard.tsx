@@ -117,6 +117,7 @@ const GameBoard = () => {
   const handleClickNextButton = useCallback(() => {
     if (currentLine === script.length - 1) {
       getNextState();
+      setCurrentLine(0);
     } else {
       setCurrentLine((prev) => (prev + 1) % script.length);
     }
