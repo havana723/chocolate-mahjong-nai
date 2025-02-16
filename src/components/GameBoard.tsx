@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useCallback, useState } from "react";
-import { chapter1 } from "../scripts/chapter01";
+import { threeCombination } from "../scripts/threeCombination";
 import ChapterTitle from "./ChapterTitle";
 import LoadingBar from "./LoadingBar";
 import Titlebar from "./Titlebar";
@@ -101,10 +101,11 @@ const NextButton = styled.button`
   }
 `;
 
+const chapter = threeCombination;
 const states = ["LOADING", "TITLE", "SCRIPT"];
 
 const GameBoard = () => {
-  const script = chapter1.texts;
+  const script = chapter.texts;
 
   const [currentState, setCurrentState] = useState<number>(0);
   const [currentLine, setCurrentLine] = useState<number>(0);
@@ -130,16 +131,16 @@ const GameBoard = () => {
         <LoadingBar onFinish={getNextState} />
       )}
       {states[currentState] === "TITLE" && (
-        <ChapterTitle title={chapter1.title} onClickNext={getNextState} />
+        <ChapterTitle title={chapter.title} onClickNext={getNextState} />
       )}
       {states[currentState] === "SCRIPT" && (
         <>
           <DefaultECGContainer playsInline autoPlay muted loop>
-            <source src="bom_default.mp4" type="video/mp4" />
+            <source src={chapter.default_video} type="video/mp4" />
           </DefaultECGContainer>
-          <ChapterContainer>{chapter1.title}</ChapterContainer>
+          <ChapterContainer>{chapter.title}</ChapterContainer>
           <Scriptontainer>{script[currentLine].text}</Scriptontainer>
-          <NameContainer>2월 15일</NameContainer>
+          <NameContainer>{chapter.date}</NameContainer>
           <NextButton onClick={handleClickNextButton}>다음으로 &gt;</NextButton>
         </>
       )}

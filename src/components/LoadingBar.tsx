@@ -31,10 +31,10 @@ const LoadingBarState = styled.div<{ $width: string }>`
 `;
 
 const loadingState = [
-  { text: "Loading", percentage: "20%" },
-  { text: "Loading .", percentage: "40%" },
-  { text: "Loading . .", percentage: "60%" },
-  { text: "Loading . . .", percentage: "80%" },
+  { text: "Loading", percentage: "27%" },
+  { text: "Loading .", percentage: "31%" },
+  { text: "Loading . .", percentage: "36%" },
+  { text: "Loading . . .", percentage: "76%" },
   { text: "Loading . . .", percentage: "100%" },
 ];
 

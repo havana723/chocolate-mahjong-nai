@@ -1,5 +1,7 @@
 const title = "시작하는 장";
 
+const default_video = "bom_default.mp4";
+
 const texts = [
   { text: "“…있잖아, 왜 발렌타인 데이 선물은 펭귄이 될 수 없을까?”" },
   { text: "나와 눈을 맞추며 조금은 뜬금없는 질문을 하는 봄이." },
@@ -60,4 +62,6 @@ const texts = [
   },
 ];
 
-export const chapter1 = { title, texts };
+const date = "2월 16일";
+
+export const chapter1 = { title, texts, default_video, date };
