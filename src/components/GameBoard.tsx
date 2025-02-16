@@ -34,7 +34,7 @@ const ChapterContainer = styled.div`
   font-size: 2vmin;
 `;
 
-const ECGContainer = styled.img`
+const DefaultECGContainer = styled.video`
   position: absolute;
   top: 8%;
   left: 2%;
@@ -109,7 +109,9 @@ const GameBoard = () => {
   return (
     <GameboardContainer>
       <Titlebar />
-      <ECGContainer src="bom_default.jpg" />
+      <DefaultECGContainer playsInline autoPlay muted loop>
+        <source src="bom_default.mp4" type="video/mp4" />
+      </DefaultECGContainer>
       <ChapterContainer>{chapter1.title}</ChapterContainer>
       <Scriptontainer>{script[currentLine].text}</Scriptontainer>
       <NameContainer>2월 15일</NameContainer>

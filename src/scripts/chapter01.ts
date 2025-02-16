@@ -55,6 +55,9 @@ const texts = [
   {
     text: "“…그냥. …이번에 준 초콜릿, 고마워서….”",
   },
+  {
+    text: "…역시, 아직은 부끄러운 것 같다.",
+  },
 ];
 
 export const chapter1 = { title, texts };
