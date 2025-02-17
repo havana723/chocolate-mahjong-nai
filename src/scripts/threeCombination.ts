@@ -109,6 +109,7 @@ const texts: Script = [
   {
     key: "no",
     text: '"…알았어."',
+    image: "bom_7.jpg",
     goto: "end",
   },
 ];
@@ -119,7 +120,7 @@ const default_video = "bom_default.mp4";
 
 const default_image = "bom_default.jpg";
 
-const images = ["bom_default.jpg"];
+const images = ["bom_default.jpg", "bom_7.jpg"];
 
 export const threeCombination: Chapter = {
   title,

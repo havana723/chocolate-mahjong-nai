@@ -201,6 +201,9 @@ const GameBoard = () => {
           <DefaultECGContainer playsInline autoPlay muted loop>
             <source src={chapter.default_video} type="video/mp4" />
           </DefaultECGContainer>
+          {script[currentLine].image && (
+            <ECGContainer src={script[currentLine].image} />
+          )}
           <ChapterContainer>{chapter.title}</ChapterContainer>
           <Scriptontainer>{script[currentLine].text}</Scriptontainer>
           <NameContainer>{chapter.date}</NameContainer>
