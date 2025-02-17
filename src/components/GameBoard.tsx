@@ -157,11 +157,12 @@ const GameBoard = () => {
   );
 
   const handleClickNextButton = useCallback(() => {
-    if (script[currentLine].goto === "end") {
+    if (script[currentLine].options) {
+      return;
+    } else if (script[currentLine].goto === "end") {
       getNextState();
       setCurrentLine(0);
-    }
-    if (script[currentLine].goto) {
+    } else if (script[currentLine].goto) {
       const nextLine = getIndexFromKey(script, script[currentLine].goto);
       if (nextLine === -1) {
         throw new Error("goto does not exist.");

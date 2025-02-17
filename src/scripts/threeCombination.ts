@@ -11,6 +11,12 @@ const texts: Script = [
       { text: "싫어", goto: "no" },
     ],
   },
+  {
+    key: "no",
+    text: '"…알았어."',
+    image: "bom_7.jpg",
+    goto: "end",
+  },
   { key: "yes", text: '"…임의의 역 A와 B와 C가 있다고 생각해 볼게."' },
   {
     text: '"…이 때 A와 B는 중첩 가능하고…, B와 C도, C와 A도 중첩 가능해."',
@@ -31,6 +37,16 @@ const texts: Script = [
     text: '"…생각해봤어?"',
   },
   {
+    key: "think",
+    text: '"…생각해봤어?"',
+    options: [
+      { text: "응", goto: "think_yes" },
+      { text: "아니", goto: "think_no" },
+    ],
+  },
+  { key: "think_no", text: '"…좀 더 생각해 봐."', goto: "think" },
+  {
+    key: "think_yes",
     text: '"…다음 버튼을 누르면 가장 간단한 답을 하나 알려줄게."',
   },
   {
@@ -58,6 +74,16 @@ const texts: Script = [
     text: "…….",
   },
   {
+    text: "…….",
+    options: [
+      {
+        text: "제대로 된 문제는 없어?",
+        goto: "hard_problem",
+      },
+    ],
+  },
+  {
+    key: "hard_problem",
     text: '"…그러면 좀 더 어려운 문제. …역만이 되어서 역이 사라지는 경우 말고는 뭐가 있는지 알아…?"',
   },
   {
@@ -67,6 +93,20 @@ const texts: Script = [
     text: '"…답을 찾았으려나…?"',
   },
   {
+    text: '"…답을 찾았으려나…?"',
+    options: [
+      {
+        text: "당연하지",
+        goto: "hard_answer",
+      },
+      {
+        text: "…아니",
+        goto: "hard_answer",
+      },
+    ],
+  },
+  {
+    key: "hard_answer",
     text: '"…여러 가지가 있는데 역시 가장 생각하기 쉬운 건 더블리치, 일발과 해저로월 또는 하저로월일 거 같네…."',
   },
   {
@@ -94,6 +134,24 @@ const texts: Script = [
     text: '"…바로 청일색 치또이 탕아오."',
   },
   {
+    text: '"…바로 청일색 치또이 탕아오."',
+    options: [
+      {
+        text: "이건 쉽지",
+        goto: "hard-hard-easy",
+      },
+      {
+        text: "왜?",
+        goto: "hard-hard-why",
+      },
+    ],
+  },
+  {
+    key: "hard-hard-easy",
+    text: '"…대단하네."',
+  },
+  {
+    key: "hard-hard-why",
     text: '"…청일색 탕아오면서 치또이려면 2345678을 전부 써야 하잖아?"',
   },
   {
@@ -104,12 +162,6 @@ const texts: Script = [
   },
   {
     text: '"…원래 마작이 그런 거야."',
-    goto: "end",
-  },
-  {
-    key: "no",
-    text: '"…알았어."',
-    image: "bom_7.jpg",
     goto: "end",
   },
 ];
