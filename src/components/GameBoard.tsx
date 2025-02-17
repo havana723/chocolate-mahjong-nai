@@ -7,6 +7,12 @@ import LoadingBar from "./LoadingBar";
 import OptionWindow from "./OptionWindow";
 import Titlebar from "./Titlebar";
 
+declare global {
+  interface Window {
+    usePreloadImagesData: Record<symbol, unknown[]>;
+  }
+}
+
 const GameboardContainer = styled.div`
   aspect-ratio: 4 / 3;
   background-color: white;
@@ -132,10 +138,15 @@ const GameBoard = () => {
 
   // preload images
   useEffect(() => {
+    const key = Symbol();
+    window.usePreloadImagesData = window.usePreloadImagesData ?? {};
+    window.usePreloadImagesData[key] = [];
+
     const loadImage = (src: string) => {
       return new Promise((resolve, reject) => {
         const loadImage = new Image();
         loadImage.src = src;
+        window.usePreloadImagesData[key]?.push(loadImage);
         // wait 2 seconds to simulate loading time
         loadImage.onload = () =>
           setTimeout(() => {
