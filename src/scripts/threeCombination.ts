@@ -1,7 +1,5 @@
 const title = "초콜릿과 마작과 펭귄";
 
-const default_video = "bom_default.mp4";
-
 const texts = [
   { text: '"…있잖아, 마작 퍼즐 하나 풀어볼래…?"' },
   { text: '"…임의의 역 A와 B와 C가 있다고 생각해 볼게."' },
@@ -102,4 +100,17 @@ const texts = [
 
 const date = "2월 16일";
 
-export const threeCombination = { title, texts, default_video, date };
+const default_video = "bom_default.mp4";
+
+const default_image = "bom_default.jpg";
+
+const images = ["bom_default.jpg"];
+
+export const threeCombination = {
+  title,
+  texts,
+  default_video,
+  default_image,
+  date,
+  images,
+};

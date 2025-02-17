@@ -35,19 +35,21 @@ const loadingState = [
   { text: "Loading .", percentage: "31%" },
   { text: "Loading . .", percentage: "36%" },
   { text: "Loading . . .", percentage: "76%" },
-  { text: "Loading . . .", percentage: "100%" },
+  { text: "Loading . . .", percentage: "98%" },
 ];
 
-const LoadingBar = (props: { onFinish: () => void }) => {
-  const { onFinish } = props;
+const LoadingBar = (props: { onFinish: () => void; imagesLoaded: boolean }) => {
+  const { onFinish, imagesLoaded } = props;
 
   const [currentState, setCurrentState] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (currentState === loadingState.length - 1) {
-        onFinish();
-        clearInterval(interval);
+        if (imagesLoaded) {
+          onFinish();
+          clearInterval(interval);
+        }
         return;
       } else {
         setCurrentState((prev) => (prev + 1) % loadingState.length);
@@ -55,7 +57,7 @@ const LoadingBar = (props: { onFinish: () => void }) => {
     }, 600);
 
     return () => clearInterval(interval);
-  }, [currentState, onFinish]);
+  }, [currentState, imagesLoaded, onFinish]);
 
   return (
     <LoadingBarContainer>

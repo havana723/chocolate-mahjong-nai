@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { threeCombination } from "../scripts/threeCombination";
 import ChapterTitle from "./ChapterTitle";
 import LoadingBar from "./LoadingBar";
@@ -40,6 +40,19 @@ const ChapterContainer = styled.div`
 `;
 
 const DefaultECGContainer = styled.video`
+  position: absolute;
+  top: 8%;
+  left: 2%;
+  width: 96%;
+  height: 72%;
+  border: 1px solid #9a9a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+`;
+
+const ECGContainer = styled.img`
   position: absolute;
   top: 8%;
   left: 2%;
@@ -110,6 +123,28 @@ const GameBoard = () => {
   const [currentState, setCurrentState] = useState<number>(0);
   const [currentLine, setCurrentLine] = useState<number>(0);
 
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadImage = (src: string) => {
+      return new Promise((resolve, reject) => {
+        const loadImage = new Image();
+        loadImage.src = src;
+        // wait 2 seconds to simulate loading time
+        loadImage.onload = () =>
+          setTimeout(() => {
+            resolve(src);
+          }, 2000);
+
+        loadImage.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(chapter.images.map((image) => loadImage(image)))
+      .then(() => setImagesLoaded(true))
+      .catch((err) => console.log("Failed to load images", err));
+  }, []);
+
   const getNextState = useCallback(
     () => setCurrentState((prev) => (prev + 1) % states.length),
     []
@@ -128,13 +163,14 @@ const GameBoard = () => {
     <GameboardContainer>
       <Titlebar />
       {states[currentState] === "LOADING" && (
-        <LoadingBar onFinish={getNextState} />
+        <LoadingBar onFinish={getNextState} imagesLoaded={imagesLoaded} />
       )}
       {states[currentState] === "TITLE" && (
         <ChapterTitle title={chapter.title} onClickNext={getNextState} />
       )}
       {states[currentState] === "SCRIPT" && (
         <>
+          <ECGContainer src={chapter.default_image} />
           <DefaultECGContainer playsInline autoPlay muted loop>
             <source src={chapter.default_video} type="video/mp4" />
           </DefaultECGContainer>
