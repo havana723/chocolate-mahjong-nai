@@ -1,8 +1,17 @@
+import { Chapter, Script } from "../types/script";
+
 const title = "초콜릿과 마작과 펭귄";
 
-const texts = [
+const texts: Script = [
   { text: '"…있잖아, 마작 퍼즐 하나 풀어볼래…?"' },
-  { text: '"…임의의 역 A와 B와 C가 있다고 생각해 볼게."' },
+  {
+    text: '"…있잖아, 마작 퍼즐 하나 풀어볼래…?"',
+    options: [
+      { text: "좋아", goto: "yes" },
+      { text: "싫어", goto: "no" },
+    ],
+  },
+  { key: "yes", text: '"…임의의 역 A와 B와 C가 있다고 생각해 볼게."' },
   {
     text: '"…이 때 A와 B는 중첩 가능하고…, B와 C도, C와 A도 중첩 가능해."',
   },
@@ -95,6 +104,12 @@ const texts = [
   },
   {
     text: '"…원래 마작이 그런 거야."',
+    goto: "end",
+  },
+  {
+    key: "no",
+    text: '"…알았어."',
+    goto: "end",
   },
 ];
 
@@ -106,11 +121,11 @@ const default_image = "bom_default.jpg";
 
 const images = ["bom_default.jpg"];
 
-export const threeCombination = {
+export const threeCombination: Chapter = {
   title,
   texts,
+  date,
   default_video,
   default_image,
-  date,
   images,
 };

@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { useCallback, useEffect, useState } from "react";
 import { threeCombination } from "../scripts/threeCombination";
+import { Chapter, Script, ScriptOption } from "../types/script";
 import ChapterTitle from "./ChapterTitle";
 import LoadingBar from "./LoadingBar";
+import OptionWindow from "./OptionWindow";
 import Titlebar from "./Titlebar";
 
 const GameboardContainer = styled.div`
@@ -114,17 +116,21 @@ const NextButton = styled.button`
   }
 `;
 
-const chapter = threeCombination;
+const getIndexFromKey = (script: Script, key: string) =>
+  script.findIndex((s) => s.key === key);
+
+const chapter: Chapter = threeCombination;
 const states = ["LOADING", "TITLE", "SCRIPT"];
 
 const GameBoard = () => {
-  const script = chapter.texts;
+  const script: Script = chapter.texts;
 
   const [currentState, setCurrentState] = useState<number>(0);
   const [currentLine, setCurrentLine] = useState<number>(0);
 
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // preload images
   useEffect(() => {
     const loadImage = (src: string) => {
       return new Promise((resolve, reject) => {
@@ -151,13 +157,34 @@ const GameBoard = () => {
   );
 
   const handleClickNextButton = useCallback(() => {
-    if (currentLine === script.length - 1) {
+    if (script[currentLine].goto === "end") {
+      getNextState();
+      setCurrentLine(0);
+    }
+    if (script[currentLine].goto) {
+      const nextLine = getIndexFromKey(script, script[currentLine].goto);
+      if (nextLine === -1) {
+        throw new Error("goto does not exist.");
+      }
+      setCurrentLine(nextLine);
+    } else if (currentLine === script.length - 1) {
       getNextState();
       setCurrentLine(0);
     } else {
       setCurrentLine((prev) => (prev + 1) % script.length);
     }
-  }, [currentLine, getNextState, script.length]);
+  }, [currentLine, getNextState, script]);
+
+  const handleOptionClick = useCallback(
+    (option: ScriptOption) => {
+      const nextLine = getIndexFromKey(script, option.goto);
+      if (nextLine === -1) {
+        throw new Error("goto does not exist.");
+      }
+      setCurrentLine(nextLine);
+    },
+    [script]
+  );
 
   return (
     <GameboardContainer>
@@ -178,6 +205,12 @@ const GameBoard = () => {
           <Scriptontainer>{script[currentLine].text}</Scriptontainer>
           <NameContainer>{chapter.date}</NameContainer>
           <NextButton onClick={handleClickNextButton}>다음으로 &gt;</NextButton>
+          {script[currentLine].options && (
+            <OptionWindow
+              options={script[currentLine].options}
+              onClickOption={handleOptionClick}
+            />
+          )}
         </>
       )}
     </GameboardContainer>
