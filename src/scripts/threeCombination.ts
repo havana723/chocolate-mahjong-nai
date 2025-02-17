@@ -44,7 +44,12 @@ const texts: Script = [
       { text: "아니", goto: "think_no" },
     ],
   },
-  { key: "think_no", text: '"…좀 더 생각해 봐."', goto: "think" },
+  {
+    key: "think_no",
+    text: '"…좀 더 생각해 봐."',
+    goto: "think",
+    image: "bom_3.jpg",
+  },
   {
     key: "think_yes",
     text: '"…다음 버튼을 누르면 가장 간단한 답을 하나 알려줄게."',
@@ -85,6 +90,7 @@ const texts: Script = [
   {
     key: "hard_problem",
     text: '"…그러면 좀 더 어려운 문제. …역만이 되어서 역이 사라지는 경우 말고는 뭐가 있는지 알아…?"',
+    image: "bom_6.jpg",
   },
   {
     text: '"…충분히 생각해 봤으면 다음 버튼을 눌러줘."',
@@ -149,6 +155,7 @@ const texts: Script = [
   {
     key: "hard-hard-easy",
     text: '"…대단하네."',
+    image: "bom_4.jpg",
   },
   {
     key: "hard-hard-why",
@@ -172,7 +179,19 @@ const default_video = "bom_default.mp4";
 
 const default_image = "bom_default.jpg";
 
-const images = ["bom_default.jpg", "bom_7.jpg"];
+const images = [
+  "bom_default.jpg",
+  "bom_1.jpg",
+  "bom_2.jpg",
+  "bom_3.jpg",
+  "bom_4.jpg",
+  "bom_5.jpg",
+  "bom_6.jpg",
+  "bom_7.jpg",
+  "bom_8.jpg",
+  "bom_9.jpg",
+  "bom_10.jpg",
+];
 
 export const threeCombination: Chapter = {
   title,
