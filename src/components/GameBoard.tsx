@@ -57,7 +57,6 @@ const DefaultECGContainer = styled.video`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
 `;
 
 const ECGContainer = styled.img`
@@ -210,9 +209,11 @@ const GameBoard = () => {
       {states[currentState] === "SCRIPT" && (
         <>
           <ECGContainer src={chapter.default_image} />
-          <DefaultECGContainer playsInline autoPlay muted loop>
-            <source src={chapter.default_video} type="video/mp4" />
-          </DefaultECGContainer>
+          {chapter.default_video && (
+            <DefaultECGContainer playsInline autoPlay muted loop>
+              <source src={chapter.default_video} type="video/mp4" />
+            </DefaultECGContainer>
+          )}
           {script[currentLine].image && (
             <ECGContainer src={script[currentLine].image} />
           )}
