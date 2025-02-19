@@ -257,7 +257,6 @@ Error generating stack: `+e.message+`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
 `,Qd=bt.img`
   position: absolute;
   top: 8%;
